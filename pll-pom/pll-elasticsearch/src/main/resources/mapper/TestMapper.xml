@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pll.elasticsearch.dao.ITestDao">
+
+    <!--根据用户名测试查询-->
+    <select id="queryTestByUserName" resultType="com.pll.elasticsearch.model.TestQueryResponse">
+        select tu.* from t_test_user tu where tu.user_name like concat('%', #{userName}, '%')
+    </select>
+</mapper>

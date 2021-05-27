@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.pll</groupId>
+    <artifactId>pll-pom</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>pll-common</module>
+        <module>pll-elasticsearch</module>
+    </modules>
+
+    <!-- lookup parent from repository -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.5.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <!--公共属性-->
+    <properties>
+        <springboot.mybatis.version>2.1.0</springboot.mybatis.version>
+        <springboot.version>2.1.5.RELEASE</springboot.version>
+        <spring.version>5.1.9.RELEASE</spring.version>
+
+        <mapper.spring.boot.starter.version>1.1.3</mapper.spring.boot.starter.version>
+        <pagehelper.spring.boot.starter>1.1.2</pagehelper.spring.boot.starter>
+
+        <fastjson.version>1.2.28</fastjson.version>
+        <tk-mapper.version>3.3.4</tk-mapper.version>
+        <druid.version>1.1.18</druid.version>
+        <springfox.version>2.7.0</springfox.version>
+
+        <tomcat.embed.version>8.5.15</tomcat.embed.version>
+        <lombok.version>1.16.4</lombok.version>
+        <guava.version>18.0</guava.version>
+        <gson.version>2.7</gson.version>
+        <jackson.version>2.9.8</jackson.version>
+        <aspectjweaver.version>1.8.0</aspectjweaver.version>
+        <mybatis.typehandler.version>1.0.2</mybatis.typehandler.version>
+
+
+        <tablestore.version>4.3.1</tablestore.version>
+
+        <mysql.version>6.0.6</mysql.version>
+
+        <jumstc.project.encoding>UTF-8</jumstc.project.encoding>
+        <jumstc.java.version>1.8</jumstc.java.version>
+        <jumstc.common.version>1.0.0</jumstc.common.version>
+        <jackson.datatype.version>2.9.4</jackson.datatype.version>
+
+        <spring.boot.admin.version>2.1.0</spring.boot.admin.version>
+        <spring.cloud.version>Greenwich.SR2</spring.cloud.version>
+
+    </properties>
+
+    <dependencyManagement>
+        <!--通过此配置管理所有子项目的版本号-->
+        <dependencies>
+            <!--spring cloud  开始-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.1.2.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- boot 开始-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-seata</artifactId>
+                <version>2.2.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${springboot.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- boot 结束-->
+            <!-- 4. spring依赖  开始-->
+            <!-- spring核心依赖-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!-- spring ioc依赖 -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!-- spring aop依赖 -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!-- spring 扩展依赖 -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus -->
+            <!--            <dependency>-->
+            <!--                <groupId>io.micrometer</groupId>-->
+            <!--                <artifactId>micrometer-registry-prometheus</artifactId>-->
+            <!--                <version>1.5.1</version>-->
+            <!--            </dependency>-->
+
+            <!--spring dao层依赖-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!-- spring web相关依赖 -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!-- spring test相关依赖 -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <!-- spring依赖  结束-->
+
+
+            <!-- swagger2 开始-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-bean-validators</artifactId>
+                <version>${springfox.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>swagger-bootstrap-ui</artifactId>
+                <version>1.9.3</version>
+            </dependency>
+            <!-- swagger2 结束-->
+            <!--spring boot start mybatis开始-->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${springboot.mybatis.version}</version>
+            </dependency>
+            <!--spring boot start mybatis结束-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>1.1.18</version>
+            </dependency>
+
+
+            <!--pagehelper 开始-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.spring.boot.starter}</version>
+            </dependency>
+            <!--pagehelper 结束-->
+
+
+            <!--通用Mapper插件-->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper</artifactId>
+                <version>${tk-mapper.version}</version>
+            </dependency>
+
+            <!-- lombok 开始-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <!-- lombok 结束-->
+
+            <!-- gson 开始-->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
+            <!-- gson 结束-->
+
+            <!-- guava 开始-->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <!-- guava 结束-->
+
+            <!--jackson 开始-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <!--jackson 结束-->
+
+
+            <!-- 3. aspectjweaver 依赖 开始 -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectjweaver.version}</version>
+            </dependency>
+            <!-- aspectjweaver 依赖 结束 -->
+
+
+            <!--  mybatis支持jdk1.8的时间类型的映射 开始-->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-typehandlers-jsr310</artifactId>
+                <version>${mybatis.typehandler.version}</version>
+            </dependency>
+            <!--  mybatis支持jdk1.8的时间类型的映射 结束-->
+
+            <!--mysql依赖 开始 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!--mysql依赖 结束 -->
+            <!--druid数据库连接池 开始-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!--druid数据库连接池 开始-->
+
+            <dependency>
+                <groupId>org.jdom</groupId>
+                <artifactId>jdom</artifactId>
+                <version>2.0.2</version>
+            </dependency>
+
+            <!--json转换-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson.datatype.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>${jumstc.java.version}</source>
+                        <target>${jumstc.java.version}</target>
+                        <testSource>${jumstc.java.version}</testSource>
+                        <testTarget>${jumstc.java.version}</testTarget>
+                        <encoding>${jumstc.project.encoding}</encoding>
+                    </configuration>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
